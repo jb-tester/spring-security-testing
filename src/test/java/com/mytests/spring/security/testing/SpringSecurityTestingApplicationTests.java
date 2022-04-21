@@ -24,6 +24,7 @@ class SpringSecurityTestingApplicationTests {
                 .andExpect(content().string("for user irina"))
         ;
     }
+    //https://youtrack.jetbrains.com/issue/IDEA-250984 - fixed
     @Test @WithMockUser(username = "superuser", password = "qwerty", roles = {"VIP"})
     void testAdminPagesWithNotAuthorizedUser() throws Exception {
         mockMvc.perform(get("/adm"))
@@ -31,6 +32,7 @@ class SpringSecurityTestingApplicationTests {
                 .andExpect(status().is(403))
         ;
     }
+    // https://youtrack.jetbrains.com/issue/IDEA-292712
     @Test @WithMockUser(username = "potus", password = "qwerty", authorities = {"ROLE_VIP"})
     void testVipPagesWithAuthorizedUser() throws Exception {
         mockMvc.perform(get("/vip/joe"))
