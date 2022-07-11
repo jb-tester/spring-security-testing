@@ -21,6 +21,7 @@ public class SpringSecurityConfig  {
         User.UserBuilder users = User.withDefaultPasswordEncoder();
         InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
         manager.createUser(users.username("user").password("password").roles("USER").build());
+        manager.createUser(users.username("fbi").password("password").roles("ADMIN","VIP","USER").build());
         manager.createUser(users.username("vip").password("password").authorities("ROLE_VIP").build());
         manager.createUser(users.username("admin").password("password").roles("USER","ADMIN").build());
         return manager;
